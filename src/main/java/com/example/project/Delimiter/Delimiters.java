@@ -17,8 +17,13 @@ public class Delimiters {
 
     /** Returns an ArrayList of delimiters from the array tokens, as described in part (a). */
     public ArrayList<String> getDelimitersList(String[] tokens) {
-        /* to be implemented in part (a) */
-        return new ArrayList<String>();
+        ArrayList<String> dels = new ArrayList<String>();
+        for (int i = 0; i < tokens.length; i++) {
+            if (tokens[i].equals(openDel) || tokens[i].equals(closeDel)) {
+                dels.add(tokens[i]);
+            }
+        }
+        return dels;
     }
     
 
@@ -26,7 +31,15 @@ public class Delimiters {
      *  Precondition: delimiters contains only valid open and close delimiters.
      */
     public boolean isBalanced(ArrayList<String> delimiters) {
-        /* to be implemented in part (b) */
-        return false;
+        int openCount = 0;
+        int closeCount = 0;
+        for (int i = 0; i < delimiters.size(); i++) {
+            if (delimiters.get(i).equals(openDel)) {
+                openCount++;
+            } else {
+                closeCount++;
+            }
+        }
+        return openCount == closeCount && delimiters.get(delimiters.size() - 1).equals(closeDel);
     }
 }
